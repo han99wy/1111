@@ -11,10 +11,10 @@
       <el-radio-button label="女" />
     </el-radio-group>
     <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="id" label="教练id" width="160" />
-      <el-table-column prop="name" label="教练名字" width="160" />
-      <el-table-column prop="sex" label="教练性别" width="160" />
-      <el-table-column prop="age" label="教练年龄" />
+      <el-table-column prop="cid" label="教练id" width="160" />
+      <el-table-column prop="cname" label="教练名字" width="160" />
+      <el-table-column prop="csex" label="教练性别" width="160" />
+      <el-table-column prop="cage" label="教练年龄" />
       <el-table-column prop="comment" label="备注" />
     </el-table>
     <el-pagination small background layout="prev, pager, next" :total="tableData.length" :page-size="pageSize"
@@ -34,26 +34,26 @@ const orderType = ref('男')
 const orderState = computed(() => orderTypes.find((v) => v.label === orderType.value).state)
 const tableData = [
   {
-    id: "5173",
-    name: "jack",
-    sex: "男",
-    age: "30"
+    cid: "5173",
+    cname: "jack",
+    csex: "男",
+    cage: "30"
   }, {
-    id: "5173",
-    name: "jack",
-    sex: "男",
-    age: "30",
+    cid: "5173",
+    cname: "jack",
+    csex: "男",
+    cage: "30",
     comment: "金牌教练，专业30年"
   }, {
-    id: "5173",
-    name: "jack",
-    sex: "男",
-    age: "30"
+    cid: "5173",
+    cname: "jack",
+    csex: "男",
+    cage: "30"
   }, {
-    id: "5173",
-    name: "jack",
-    sex: "男",
-    age: "30"
+    cid: "5173",
+    cname: "jack",
+    csex: "男",
+    cage: "30"
   },
 ]
 const handleRadio = () => {

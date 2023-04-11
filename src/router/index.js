@@ -82,8 +82,36 @@ const router = createRouter({
         }     
 
       ]
-       }
+       }/* ,
+       {
+         path: '/login',
+         name: 'login',
+         component: Login,
+         meta: {
+           auth: false
+         }
+       } */
   ]
 })
 
+// router.beforeEach((to, from, next)=>{
+
+//   if( to.meta.auth ) {  // 需要权限校验的
+//     // 校验token是否合法，通过请求头携带
+//     info().then((res)=>{
+//       if(res.data.errcode === 0) {
+//         const userTokenStore = useUserTokenStore()
+//         userTokenStore.udpateUsername(res.data.username)
+//         next()
+//       }
+//       else {
+//         next('/login')
+//       }
+//     })
+//   }
+//   else {   // 不需要权限，直接进入
+//     next()
+//   }
+
+// })
 export default router
