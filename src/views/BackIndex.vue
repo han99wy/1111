@@ -65,6 +65,7 @@
                             <el-breadcrumb-item v-for="item in breadcrumbs" :key="item">{{ item }}</el-breadcrumb-item>
                         </TransitionGroup>
                     </el-breadcrumb>
+                    <RouterView />
                 </el-main>
             </el-container>
         </el-container>
@@ -88,7 +89,12 @@ const handleout = () => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+* {
+    padding: 0;
+    margin: 0;
+}
+
 .common-layout {
     background: url(https://p1.meituan.net/dpdeal/34266eb34833f5f31d1d2f6d148e9d8a2430338.png)no-repeat;
     background-size: cover;
@@ -105,39 +111,41 @@ const handleout = () => {
 .el-menu {
     height: calc(100vh - 60px);
 }
+
 .is-active {
-  color: white !important;
-  background-color: #6896aa;
+    color: white !important;
+    background-color: #6896aa;
 }
 
 .el-breadcrumb {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .el-aside {
-    background-color: violet;
+    background-color: #ffacc9;
 
 }
+
 .slide-enter-from {
-  opacity: 0;
+    opacity: 0;
 }
 
 .slide-enter-to {
-  opacity: 1;
+    opacity: 1;
 }
 
 .slide-enter-active {
-  transition: 0.5s;
+    transition: 0.5s;
 }
 
 .slide-leave-from {
-  opacity: 1;
+    opacity: 1;
 }
 
 .slide-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 
 .slide-leave-active {
-  transition: 0.5s;
-}
-</style>
+    transition: 0.5s;
+}</style>

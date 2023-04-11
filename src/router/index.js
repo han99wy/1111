@@ -33,7 +33,7 @@ const router = createRouter({
           name: 'homeCoach',
           component: HomeCoach,
           meta: {
-            breadcrumbs: ['教练信息', '教练信息']
+            breadcrumbs: ['教练信息']
           }
         },
         {
@@ -41,7 +41,7 @@ const router = createRouter({
           name: 'homeEquipment',
           component: HomeEquipment,
           meta: {
-            breadcrumbs: ['器材列表', '器材列表']
+            breadcrumbs: ['器材列表']
           }
         },
         {
@@ -49,35 +49,35 @@ const router = createRouter({
           name: 'homeLesson',
           component: HomeLesson,
           meta: {
-            breadcrumbs: ['课程列表', '课程列表']
+            breadcrumbs: ['课程列表']
           }
         },{
           path: 'home/manager',
           name: 'homeManager',
           component: HomeManager,
           meta: {
-            breadcrumbs: ['用户管理', '用户管理']
+            breadcrumbs: ['用户管理']
           }
         },{
           path: 'home/order',
           name: 'homeOrder',
           component: HomeOrder,
           meta: {
-            breadcrumbs: ['订单列表', '订单列表']
+            breadcrumbs: ['订单列表']
           }
         },{
           path: 'home/user',
           name: 'homeuser',
           component: HomeUser,
           meta: {
-            breadcrumbs: ['用户信息', '用户信息']
+            breadcrumbs: ['用户信息']
           }
         },{
           path: 'home/vip',
           name: 'homeVip',
           component: HomeVip,
           meta: {
-            breadcrumbs: ['vip信息', 'vip信息']
+            breadcrumbs: ['vip信息']
           }
         }     
 
