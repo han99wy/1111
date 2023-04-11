@@ -1,22 +1,88 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-
+import BackIndex from "@/views/BackIndex.vue"
+import Home from "@/views/Home.vue"
+import HomeCoach from "@/views/HomeCoach.vue"
+import HomeEquipment from "@/views/HomeEquipment.vue"
+import HomeLesson from "@/views/HomeLesson.vue"
+import HomeManager from "@/views/HomeManager.vue"
+import HomeOrder from "@/views/HomeOrder.vue"
+import HomeUser from "@/views/HomeUser.vue"
+import HomeVip from "@/views/HomeVip.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
+       {
+        path:"/",
+        name:"backindex",
+        component:BackIndex,
+        redirect:"/home",
+        meta: {
+          auth: true
+        },
+        children: [
+        {
+          path: 'home',
+          name: 'home',
+          component: Home,
+          meta: {
+            breadcrumbs: ['首页']
+          }
+        },
+        {
+          path: 'home/coach',
+          name: 'homeCoach',
+          component: HomeCoach,
+          meta: {
+            breadcrumbs: ['教练信息', '教练信息']
+          }
+        },
+        {
+          path: 'home/equipment',
+          name: 'homeEquipment',
+          component: HomeEquipment,
+          meta: {
+            breadcrumbs: ['器材列表', '器材列表']
+          }
+        },
+        {
+          path: 'home/lesson',
+          name: 'homeLesson',
+          component: HomeLesson,
+          meta: {
+            breadcrumbs: ['课程列表', '课程列表']
+          }
+        },{
+          path: 'home/manager',
+          name: 'homeManager',
+          component: HomeManager,
+          meta: {
+            breadcrumbs: ['用户管理', '用户管理']
+          }
+        },{
+          path: 'home/order',
+          name: 'homeOrder',
+          component: HomeOrder,
+          meta: {
+            breadcrumbs: ['订单列表', '订单列表']
+          }
+        },{
+          path: 'home/user',
+          name: 'homeuser',
+          component: HomeUser,
+          meta: {
+            breadcrumbs: ['用户信息', '用户信息']
+          }
+        },{
+          path: 'home/vip',
+          name: 'homeVip',
+          component: HomeVip,
+          meta: {
+            breadcrumbs: ['vip信息', 'vip信息']
+          }
+        }     
+
+      ]
+       }
   ]
 })
 
