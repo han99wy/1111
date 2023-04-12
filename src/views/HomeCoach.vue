@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2> 教练信息</h2>
+    
     <el-input v-model="searchWord" placeholder="搜索订单关键词">
       <template #append>
         <el-button icon="Search" @click="handleSearch" />

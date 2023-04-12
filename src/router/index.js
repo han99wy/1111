@@ -8,6 +8,7 @@ import HomeManager from "@/views/HomeManager.vue"
 import HomeOrder from "@/views/HomeOrder.vue"
 import HomeUser from "@/views/HomeUser.vue"
 import HomeVip from "@/views/HomeVip.vue"
+import Logon from "@/views/Logon.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -82,15 +83,15 @@ const router = createRouter({
         }     
 
       ]
-       }/* ,
+       },
        {
-         path: '/login',
-         name: 'login',
-         component: Login,
+         path: '/logon',
+         name: 'logon',
+         component: Logon,
          meta: {
            auth: false
          }
-       } */
+       }
   ]
 })
 
