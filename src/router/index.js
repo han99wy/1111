@@ -9,18 +9,20 @@ import HomeOrder from "@/views/HomeOrder.vue"
 import HomeUser from "@/views/HomeUser.vue"
 import HomeVip from "@/views/HomeVip.vue"
 import Logon from "@/views/Logon.vue"
+import Login from "@/views/Login.vue"
+import Index from "@/views/Index.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-       {
-        path:"/",
-        name:"backindex",
-        component:BackIndex,
-        redirect:"/home",
-        meta: {
-          auth: true
-        },
-        children: [
+    {
+      path: "/",
+      name: "backindex",
+      component: BackIndex,
+      redirect: "/home",
+      meta: {
+        auth: true
+      },
+      children: [
         {
           path: 'home',
           name: 'home',
@@ -52,46 +54,62 @@ const router = createRouter({
           meta: {
             breadcrumbs: ['课程列表']
           }
-        },{
+        }, {
           path: 'home/manager',
           name: 'homeManager',
           component: HomeManager,
           meta: {
             breadcrumbs: ['用户管理']
           }
-        },{
+        }, {
           path: 'home/order',
           name: 'homeOrder',
           component: HomeOrder,
           meta: {
             breadcrumbs: ['订单列表']
           }
-        },{
+        }, {
           path: 'home/user',
           name: 'homeuser',
           component: HomeUser,
           meta: {
             breadcrumbs: ['用户信息']
           }
-        },{
+        }, {
           path: 'home/vip',
           name: 'homeVip',
           component: HomeVip,
           meta: {
             breadcrumbs: ['vip信息']
           }
-        }     
+        }
 
       ]
-       },
-       {
-         path: '/logon',
-         name: 'logon',
-         component: Logon,
-         meta: {
-           auth: false
-         }
-       }
+    },
+    {
+      path: '/logon',
+      name: 'logon',
+      component: Logon,
+      meta: {
+        auth: false
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: Index,
+      meta: {
+        auth: true
+      }
+    }
   ]
 })
 

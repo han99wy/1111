@@ -89,7 +89,7 @@ const handleout = () => {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped >
 * {
     padding: 0;
     margin: 0;

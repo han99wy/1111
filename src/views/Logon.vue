@@ -4,31 +4,38 @@
     <h1>注册页面</h1>
 
     <div class="el">
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="用户名" prop="user" >
-        <el-input v-model="ruleForm.user" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="手机号码" prop="mobile">
-        <el-input v-model="ruleForm.mobile" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="电子邮箱" prop="email">
-        <el-input v-model="ruleForm.email" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="账号密码" prop="pass">
-        <el-input type="password" v-model="ruleForm.pass" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm.checkPass" clearable></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
-        <el-button @click="returnForm">返回登录</el-button>
-      </el-form-item>
-    </el-form>
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form-item prop="user">
+          <span slot="label">
+            <span style="color: black"><strong>用户名</strong></span>
+          </span>
+          <el-input v-model="ruleForm.user" clearable></el-input>
+        </el-form-item>
+        <el-form-item prop="mobile">
+          <span slot="label">
+            <span style="color: black"><strong>手机号码</strong></span>
+          </span>
+          <el-input v-model="ruleForm.mobile" clearable></el-input>
+        </el-form-item>
+        <el-form-item prop="pass">
+          <span slot="label">
+            <span style="color: black"><strong>账号密码</strong></span>
+          </span>
+          <el-input type="password" v-model="ruleForm.pass" clearable></el-input>
+        </el-form-item>
+        <el-form-item prop="checkPass">
+          <span slot="label">
+            <span style="color: black"><strong>确认密码</strong></span>
+          </span>
+          <el-input type="password" v-model="ruleForm.checkPass" clearable></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
+          <el-button @click="returnForm">返回登录</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
-  </div>
-
-
 </template>
 
 <script >
@@ -47,13 +54,6 @@ export default {
         return callback()
       }
       callback(new Error('手机号码不能为空'))
-    }
-    var checkEmail = (rule, value, callback) => {
-      const regUser = /^([a-zA-Z0-9]+[-_]?)+@[a-zA-Z0-9]+\.[a-z]+$/
-      if (regUser.test(value)) {
-        return callback()
-      }
-      callback(new Error('邮箱不能为空'))
     }
     var validatePass = (rule, value, callback) => {
       if (value === '') {
@@ -78,14 +78,12 @@ export default {
       ruleForm: {
         user: '',
         mobile: '',
-        email: '',
         pass: '',
         checkPass: ''
       },
       rules: {
         user: [{ validator: checkUser, trigger: 'blur' }],
         mobile: [{ validator: checkMobile, trigger: 'blur' }],
-        email: [{ validator: checkEmail, trigger: 'blur' }],
         pass: [{ validator: validatePass, trigger: 'blur' }],
         checkPass: [{ validator: validatePass2, trigger: 'blur' }]
       }
@@ -142,7 +140,7 @@ export default {
 }
 
 #contain h1 {
-  color: black;
+  color: rgba(22, 20, 22, 0.815);
   font-size: 60px
 }
 
@@ -157,7 +155,5 @@ button {
   color: white;
   margin-left: 50px;
 }
-
-
 
 </style>
