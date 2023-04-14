@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 export const useUserTokenStore = defineStore('userToken', () => {
   const token = ref('')
   const username = ref('')
+
   function updateToken(payload) {
     token.value = payload
   }

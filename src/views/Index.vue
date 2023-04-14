@@ -165,7 +165,7 @@ export default {
 
 </script>
 
-<style >
+<style>
 .template {
     padding: 0;
     margin: 0;
@@ -175,6 +175,9 @@ a{
     color: white;
 }
 
+a:hover{
+    color:rgb(248, 20, 134)
+}
 .background {
     background: url(https://p1.meituan.net/shaitu/c15c70655e89b7a426455650007126633692164.jpg);
     height: 100%;
@@ -248,6 +251,7 @@ a{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 
 ul {
     list-style: none;

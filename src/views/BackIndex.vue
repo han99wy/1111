@@ -12,7 +12,8 @@
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item>个人中心</el-dropdown-item>
+                            <el-dropdown-item><a href="/HomeUser">个人中心</a></el-dropdown-item>
+                            <el-dropdown-item><a href="/HomeManager">管理员中心</a></el-dropdown-item>
                             <el-dropdown-item @click="handleout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
@@ -44,14 +45,14 @@
                                 <el-icon>
                                 </el-icon> 器材列表
                             </el-menu-item>
-                            <el-menu-item index="/home/manager">
+                            <!-- <el-menu-item index="/home/manager">
                                 <el-icon>
                                 </el-icon> 管理员
                             </el-menu-item>
                             <el-menu-item index="/home/user">
                                 <el-icon>
                                 </el-icon> 用户管理
-                            </el-menu-item>
+                            </el-menu-item> -->
                             <el-menu-item index="/home/vip">
                                 <el-icon>
                                 </el-icon> vip登记表
@@ -113,7 +114,7 @@ const handleout = () => {
 }
 
 .is-active {
-    color: white !important;
+    color: rgb(84, 26, 221) !important;
     background-color: #6896aa;
 }
 

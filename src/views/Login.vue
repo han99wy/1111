@@ -1,108 +1,79 @@
 <template>
-  <div id="dd"></div>
-  <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" label-width="120px" class="demo-ruleForm">
-    <el-form-item label="账号" prop="nub">
-      <el-input v-model.number="ruleForm.nub" />
-    </el-form-item>
-    <el-form-item label="密码" prop="pass">
-      <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
-    </el-form-item>
-
-    <el-form-item>
-      <el-button type="primary" @click="submitForm(ruleFormRef)">提交</el-button>
-      <el-button @click="resetForm(ruleFormRef)">重置</el-button>
-      <a href="/logon">
-        <p>没有账号？注册新用户</p>
-      </a>
-    </el-form-item>
-  </el-form>
+    <div class="particle-wave" ref="particle">
+    <el-form :model="form" :rules="rules" ref="formRef" label-width="120px" status-icon>
+      <el-form-item label="手机号" prop="username">
+        <el-input v-model="form.username" />
+      </el-form-item >
+      <el-form-item label="密码" prop="pwd">
+        <el-input v-model="form.pwd" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit(formRef)">登录</el-button>
+        <p><a href="/logon">没有账号？点击注册</a></p>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
-<script lang="ts" setup>
+<script  setup>
+import { ElMessage } from 'element-plus';
 import { reactive, ref } from 'vue'
-import type { FormInstance, FormRules } from 'element-plus'
+import {loginUser}from "@/api/user"
+import http from '../utils/request';
+import {useRouter} from "vue-router"
 
-const ruleFormRef = ref<FormInstance>()
-
-var reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
-const checkAge = (rule: any, value: any, callback: any) => {
-  if (!value) {
-    return callback(new Error('请输入手机号'))
-  }
-  setTimeout(() => {
-    if (!Number.isInteger(value)) {
-      callback(new Error('Please input digits'))
-    } else {
-      if (value < 18) {
-        callback(new Error('Age must be greater than 18'))
-      } else {
-        callback()
-      }
-    }
-  }, 1000)
-}
-
-const validatePass = (rule: any, value: any, callback: any) => {
-  if (value === '') {
-    callback(new Error('请输入密码'))
-  } else {
-    if (ruleForm.checkPass !== '') {
-      if (!ruleFormRef.value) return
-      ruleFormRef.value.validateField('checkPass', () => null)
-    }
-    callback()
-  }
-}
-const validatePass2 = (rule: any, value: any, callback: any) => {
-  if (value === '') {
-    callback(new Error('Please input the password again'))
-  } else if (value !== ruleForm.pass) {
-    callback(new Error("Two inputs don't match!"))
-  } else {
-    callback()
-  }
-}
-
-const ruleForm = reactive({
-  pass: '',
-  checkPass: '',
-  nub: '',
+const uname=/^[a-zA-Z0-9_-]{4,16}$/
+const pwd=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z\\W]{6,18}$/
+const formRef = ref()
+const router=useRouter()
+const form = reactive({
+  username: '',
+  pwd: ''
 })
 
-const rules = reactive<FormRules>({
-  pass: [{ validator: validatePass, trigger: 'blur' }],
-  checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-  age: [{ validator: checkAge, trigger: 'blur' }],
+const rules = reactive({
+  username:  [
+    { required: true, message: '用户名不能为空', trigger: 'blur' },
+    { pattern: uname , message: '请输入符合要求的用户名', trigger: 'blur' },
+  ],
+  pwd: [
+    { required: true, message: '密码不能为空', trigger: 'blur' },
+    { pattern: pwd , message: '请输入8位验证码含数字字母下划线', trigger: 'blur' },
+  ]
 })
 
-const submitForm = (formEl: FormInstance | undefined) => {
+const onSubmit = (formEl) => {
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate((valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      loginUser(form).then((res)=>{
+       if(res.data){
+        http.post('/login/loginUser',form)
+        console.log(form);
+        ElMessage.success("成功")
+        router.push('/')
+       }else{
+        ElMessage.error("失败")
+       }
+      })
     } else {
-      console.log('error submit!')
-      return false
+      console.log('error submit!', fields)
     }
   })
-}
-
-const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.resetFields()
 }
 </script>
 
 <style scoped>
-/* #dd {
-  background: url("https://t7.baidu.com/it/u=257801446,4040980007&fm=193&f=GIF")no-repeat;
+.particle-wave{
+  background:url(https://p1.meituan.net/dpdeal/ff36f3e5e6340f249c63cd7e09358a531917046.jpg)no-repeat;
   background-size: cover;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-} */
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+  opacity: 1;
+}
 
 .el-form {
   width: 400px;
@@ -113,7 +84,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 .el-form a {
   display: block;
   text-decoration: none;
-  color: black;
+  color: rgb(167, 235, 8);
   margin-left: 8px;
 }
 

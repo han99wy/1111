@@ -55,25 +55,11 @@ const router = createRouter({
             breadcrumbs: ['课程列表']
           }
         }, {
-          path: 'home/manager',
-          name: 'homeManager',
-          component: HomeManager,
-          meta: {
-            breadcrumbs: ['用户管理']
-          }
-        }, {
           path: 'home/order',
           name: 'homeOrder',
           component: HomeOrder,
           meta: {
             breadcrumbs: ['订单列表']
-          }
-        }, {
-          path: 'home/user',
-          name: 'homeuser',
-          component: HomeUser,
-          meta: {
-            breadcrumbs: ['用户信息']
           }
         }, {
           path: 'home/vip',
@@ -109,12 +95,25 @@ const router = createRouter({
       meta: {
         auth: true
       }
+    }, {
+      path: '/homemanager',
+      name: 'homeManager',
+      component: HomeManager,
+      meta: {
+        breadcrumbs: ['用户管理']
+      }
+    }, {
+      path: '/homeuser',
+      name: 'homeuser',
+      component: HomeUser,
+      meta: {
+        breadcrumbs: ['用户信息']
+      }
     }
   ]
 })
 
 // router.beforeEach((to, from, next)=>{
-
 //   if( to.meta.auth ) {  // 需要权限校验的
 //     // 校验token是否合法，通过请求头携带
 //     info().then((res)=>{
@@ -131,6 +130,5 @@ const router = createRouter({
 //   else {   // 不需要权限，直接进入
 //     next()
 //   }
-
 // })
 export default router

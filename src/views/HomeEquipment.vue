@@ -8,33 +8,27 @@
         </el-input>
         <el-table :data="tableData" border style="width: 100%">
             <el-table-column prop="qid" label="器材id" width="160" />
-            <el-table-column prop="lname" label="器材名字" width="200" />
-            <el-table-column prop="lnumber" label="器材名字" width="200" />
+            <el-table-column prop="qname" label="器材名字" width="200" />
+            <el-table-column prop="qnumber" label="器材名字" width="200" />
             <el-table-column prop="comment" label="备注" />
         </el-table>
-        <el-pagination small background layout="prev, pager, next" :total="tableData.length" :page-size="pageSize"
-            @current-change="handlePageChange" class="page-pos" />
+    
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ElMessage } from 'element-plus';
+import http from '../utils/request';
+import { useRouter } from "vue-router"
+import { ref,reactive} from 'vue';
+
 const searchWord = ref('')
 const pageSize = ref(2)
-const tableData = [
-    {
-        qid: "05",
-        lname: "杠铃",
-        lnumber: '20',
-        Comment: ""
-    }
-]
-const handleSearch = () => {
-}
-const handlePageChange = (num) => {
-  //console.log(num) // 1 2 3 ... 
-  tablePageData.value = tableData.value.filter((v, index) => (num - 1) * pageSize.value <= index && num * pageSize.value > index)
-}
+const tableData = ref([])
+const handleSearch = () => {}
+const handlePageChange = () => {}
+
+
 </script>
 
 <style lang="scss" scoped>
