@@ -28,15 +28,17 @@
     </el-dialog>
     <el-input v-model="searchWord" placeholder="搜索订单关键词">
       <template #append>
-        <el-button icon="Search" @click="handleSearch(formRef)" />
+        <el-badge :value="3" class="item" type="danger">
+          <el-button icon="Search" @click="handleSearch(formRef)" />
+        
+        </el-badge>
       </template>
     </el-input>
     <el-radio-group v-model="orderType" @change="handleRadio">
       <el-radio-button label="男" />
       <el-radio-button label="女" />
     </el-radio-group >
-      <el-table :data="tableData" border style="width: 100%">
-      <el-radio-button></el-radio-button>
+      <el-table :data="tableData" border  height="250"  stripe style="width: 100%">
       <el-table-column prop="cid" label="教练id" width="160" />
       <el-table-column prop="cname" label="教练名字" width="160" />
       <el-table-column prop="csex" label="教练性别" width="160" />
@@ -55,6 +57,22 @@
     :page-size="[5, 10, 15, 20]"
     @current-change="handlePageChange" class="page-pos" />
   </div>
+  <el-backtop :bottom="100">
+    <div
+      style="
+        height: 100%;
+        width: 100%;
+        background-color: var(--el-bg-color-overlay);
+        box-shadow: var(--el-box-shadow-lighter);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;
+        z-index: 1000;
+      "
+    >
+      UP
+    </div>
+  </el-backtop>
 </template>
 
 <script setup>
@@ -64,7 +82,6 @@ import http from '../utils/request';
 import { useRouter } from "vue-router"
 import { ref, computed, reactive } from 'vue'
 import { getCoach, createCoach, deleteCoach, searchCoach, reCoach } from '../api/manage';
-
 const rules = reactive({
    
 })
@@ -107,7 +124,7 @@ const handleSearch = (formEl) => {
     if (valid) {
       searchCoach(form).then((res) => {
         if (res.data) {
-          http.post('/coach/selectById/{id}',form)
+          http.get('/coach/selectById/{id}',form)
           ElMessage.success("成功")
         } else {
           ElMessage.error("失败")
@@ -155,6 +172,8 @@ const onSubmit = (formEl) => {
 getCoach({cname:form.cname,csex:form.csex,cage:form.cage,comment:form.comment,lcount:form.lcount}).then((res)=>{
   if( res.data.length ) {
     tableData.value = res.data
+    console.log(res.data.length);
+    total.value=res.data.length+1
   }
 })
 </script>

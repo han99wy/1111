@@ -61,15 +61,7 @@ const router = createRouter({
           meta: {
             breadcrumbs: ['订单列表']
           }
-        }, {
-          path: 'home/vip',
-          name: 'homeVip',
-          component: HomeVip,
-          meta: {
-            breadcrumbs: ['vip信息']
-          }
         }
-
       ]
     },
     {
@@ -108,6 +100,13 @@ const router = createRouter({
       component: HomeUser,
       meta: {
         breadcrumbs: ['用户信息']
+      }
+    }, {
+      path: '/homevip',
+      name: 'homeVip',
+      component: HomeVip,
+      meta: {
+        breadcrumbs: ['vip信息']
       }
     }
   ]

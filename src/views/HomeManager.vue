@@ -1,20 +1,23 @@
 <template>
-    <div>
-        <h2>管理员</h2>
-        <el-table :data="tableData" border style="width: 100%">
-            <el-table-column prop="mid" label="管理员id" col="4" />
-            <el-table-column prop="mname" label="管理员名" col="4" />
-            <el-table-column prop="mpwd" label="管理员密码" col="4" />
-        </el-table>
-    </div>
+  <div>
+    <h2>管理员</h2>
+    <el-table :data="tableData"  border style="width: 480px">
+      <el-table-column stripe prop="mid" label="管理员id" width="160" />
+      <el-table-column stripe prop="mname" label="管理员名" width="160" />
+      <el-table-column stripe prop="mpwd" label="管理员密码" width="160" />
+    </el-table>
+    
+  </div>
 </template>
 
 <script setup>
-  const tableData = [
+import {ref} from "vue"
+
+const tableData = [
   {
-    mid:"666",
-   mname:"jack",
-   mpwd:"xxxxxxxx"
+    mid: "666",
+    mname: "jack",
+    mpwd: "xxxxxxxx"
   }
 ]
 </script>

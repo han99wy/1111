@@ -12,8 +12,9 @@
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item><a href="/HomeUser">个人中心</a></el-dropdown-item>
-                            <el-dropdown-item><a href="/HomeManager">管理员中心</a></el-dropdown-item>
+                            <el-dropdown-item><a href="/HomeUser">1</a>个人中心</el-dropdown-item>
+                            <el-dropdown-item><a href="/HomeVip">2</a>vip登记表</el-dropdown-item>
+                            <el-dropdown-item><a href="/HomeManager">3</a>管理员中心</el-dropdown-item>
                             <el-dropdown-item @click="handleout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
@@ -44,18 +45,6 @@
                             <el-menu-item index="/home/equipment">
                                 <el-icon>
                                 </el-icon> 器材列表
-                            </el-menu-item>
-                            <!-- <el-menu-item index="/home/manager">
-                                <el-icon>
-                                </el-icon> 管理员
-                            </el-menu-item>
-                            <el-menu-item index="/home/user">
-                                <el-icon>
-                                </el-icon> 用户管理
-                            </el-menu-item> -->
-                            <el-menu-item index="/home/vip">
-                                <el-icon>
-                                </el-icon> vip登记表
                             </el-menu-item>
                         </el-sub-menu>
                     </el-menu>
