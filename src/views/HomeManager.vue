@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <Menu :active="0"/>
     <el-table :data="tableData"  border style="width: 480px">
       <el-table-column stripe prop="mid" label="管理员id" width="160" />
@@ -19,9 +20,10 @@ const mid=ref("")
 const mname=ref("")
 const mpwd=ref("")
 const router=useRouter()
-const tableData = ([])
-getmanager({mid,mname,mpwd}).then((res)=>{
+const tableData = ref([])
+getmanager({mid:mid,mname:mname,mpwd:mpwd}).then((res)=>{
   if( res.data.length ) {
+    console.log(res.data);
     tableData.value = res.data
   }
 })

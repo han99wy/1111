@@ -172,8 +172,6 @@ const onSubmit = (formEl) => {
 getCoach({cname:form.cname,csex:form.csex,cage:form.cage,comment:form.comment,lcount:form.lcount}).then((res)=>{
   if( res.data.length ) {
     tableData.value = res.data
-    console.log(res.data.length);
-    total.value=res.data.length+1
   }
 })
 </script>

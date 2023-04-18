@@ -41,7 +41,7 @@
                 </span>
             </template>
         </el-dialog>
-        <el-table :data="tableData" border style="width: 100%">
+        <el-table :data="tableData" height="250" border style="width: 100%">
             <el-table-column prop="lid" label="课程id" width="160" />
             <el-table-column prop="ltime" label="上课时间" width="160" />
             <el-table-column prop="lname" label="课程名称" width="160" />

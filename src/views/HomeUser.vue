@@ -27,7 +27,7 @@ const lid=ref("")
 const upwd=ref("")
 const vid=ref("")
 const router=useRouter()
-  const tableData = ([])
+  const tableData = ref([])
   getuser({uid,uname,usex,uphone,lid,upwd,vid}).then((res)=>{
   if( res.data.length ) {
     tableData.value = res.data

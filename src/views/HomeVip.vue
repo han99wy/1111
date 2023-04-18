@@ -20,7 +20,7 @@ const level=ref("")
 const sdate=ref("")
 const edate=ref("")
 const router=useRouter()
-  const tableData = ([])
+  const tableData = ref([])
   getvip({vid,level,sdate,edate}).then((res)=>{
   if( res.data.length ) {
     tableData.value = res.data
