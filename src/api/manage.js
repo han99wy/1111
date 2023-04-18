@@ -44,8 +44,21 @@ function createLesson (data){
 function getOrder (data){
   return http.get("orders/selectAll",data)
 }
+
 function createOrder(data){
   return http.post("orders/insert",data)
+}
+
+function getuser(data){
+  return http.get("user/selectAll")
+}
+
+function getvip(data){
+  return http.get("vip/selectAll")
+}
+
+function getmanager(data){
+  return http.get("manager/selectAll")
 }
 export{
   getCoach,
@@ -58,5 +71,8 @@ export{
   getLesson,
   createLesson,
   getOrder,
-  createOrder
+  createOrder,
+  getmanager,
+  getuser,
+  getvip
 }
