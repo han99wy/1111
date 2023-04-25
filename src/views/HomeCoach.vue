@@ -30,46 +30,36 @@
       <template #append>
         <el-badge :value="3" class="item" type="danger">
           <el-button icon="Search" @click="handleSearch(formRef)" />
-        
         </el-badge>
       </template>
     </el-input>
-    <el-radio-group v-model="orderType" @change="handleRadio">
-      <el-radio-button label="男" />
-      <el-radio-button label="女" />
-    </el-radio-group >
-      <el-table :data="tableData" border  height="250"  stripe style="width: 100%">
-      <el-table-column prop="cid" label="教练id" width="160" />
+    <el-table :data="tableData" border height="250" stripe style="width: 100%">
+      <el-table-column width="60">
+        <template #default="scope">
+          <el-checkbox v-model="scope.row.isChecked" label="" size="large" />
+        </template>
+      </el-table-column> <el-table-column prop="cid" label="教练id" width="160" />
       <el-table-column prop="cname" label="教练名字" width="160" />
       <el-table-column prop="csex" label="教练性别" width="160" />
-      <el-table-column prop="cage" label="教练年龄" width="160"/>
-      <el-table-column prop="lcount" label="课程节数" width="160"/>
+      <el-table-column prop="cage" label="教练年龄" width="160" />
+      <el-table-column prop="lcount" label="课程节数" width="160" />
       <el-table-column prop="comment" label="备注" />
     </el-table>
-    
-    <el-pagination 
-    v-model:page-size="pageSize"
-    :small=false
-    background="background" 
-    layout="prev, pager, next" 
-    :total="7" 
-    :page-count="6"
-    :page-size="[5, 10, 15, 20]"
-    @current-change="handlePageChange" class="page-pos" />
+
+    <el-pagination v-model:page-size="pageSize" :small=false background="background" layout="prev, pager, next" :total="7"
+      :page-count="6" :page-size="[5, 10, 15, 20]" @current-change="handlePageChange" class="page-pos" />
   </div>
   <el-backtop :bottom="100">
-    <div
-      style="
-        height: 100%;
-        width: 100%;
-        background-color: var(--el-bg-color-overlay);
-        box-shadow: var(--el-box-shadow-lighter);
-        text-align: center;
-        line-height: 40px;
-        color: #1989fa;
-        z-index: 1000;
-      "
-    >
+    <div style="
+            height: 100%;
+            width: 100%;
+            background-color: var(--el-bg-color-overlay);
+            box-shadow: var(--el-box-shadow-lighter);
+            text-align: center;
+            line-height: 40px;
+            color: #1989fa;
+            z-index: 1000;
+          ">
       UP
     </div>
   </el-backtop>
@@ -82,19 +72,14 @@ import http from '../utils/request';
 import { useRouter } from "vue-router"
 import { ref, computed, reactive } from 'vue'
 import { getCoach, createCoach, deleteCoach, searchCoach, reCoach } from '../api/manage';
-const rules = reactive({
-   
-})
+const rules = reactive({})
 const router = useRouter()
-const orderTypes = [
-  { label: '男', state: '男' },
-  { label: '女', state: '女' },
-];
 const searchWord = ref('')
 const pageSize = ref(6)
 const orderType = ref('男')
 const dialogVisible = ref(false)
 const formRef = ref()
+const checked1 = ref(true)
 const form = reactive({
   cname: "",
   csex: "",
@@ -104,12 +89,8 @@ const form = reactive({
 const tableData = ref([])
 
 // 分页功能定义
-const handleRadio = () => {
-
-}
-const handlePageChange = () => {
-
-}
+const handleRadio = () => {}
+const handlePageChange = () => {}
 
 
 // 增删改查功能
@@ -117,39 +98,17 @@ const handeladd = () => {
   dialogVisible.value = true
 }
 
-
 const handleSearch = (formEl) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      searchCoach(form).then((res) => {
-        if (res.data) {
-          http.get('/coach/selectById/{id}',form)
-          ElMessage.success("成功")
-        } else {
-          ElMessage.error("失败")
-          console.log("error");
-        }
-      })
-    } 
-  })
-}
+  // const c = tableData.value = tableData.value.find((v) => v.find((v) => v === searchWord.value))
+  const c= tableData.value.filter((v)=>v.searchWord)
+  console.log(searchWord);
+  searchCoach({ c }).then((res) => { })}
+
 const handeldelete = (formEl) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      deleteCoach(form).then((res) => {
-        if (res.data) {
-          http.post('/coach/delete/{id}', form)
-          ElMessage.success("成功")
-        } else {
-          ElMessage.error("失败")
-          console.log("error");
-        }
-      })
-    }
-  })
-}
+  const id = tableData.value.find((v) => v.isChecked).cid
+  deleteCoach({ id }).then((res) => {
+    if (res.data) {}
+  })}
 
 const onSubmit = (formEl) => {
   if (!formEl) return
@@ -169,11 +128,14 @@ const onSubmit = (formEl) => {
   })
 }
 
-getCoach({cname:form.cname,csex:form.csex,cage:form.cage,comment:form.comment,lcount:form.lcount}).then((res)=>{
-  if( res.data.length ) {
+getCoach({ cname: form.cname, csex: form.csex, cage: form.cage, comment: form.comment, lcount: form.lcount }).then((res) => {
+  if (res.data.length) {
+    res.data.forEach(element => {
+      element.isChecked = false
+    });
     tableData.value = res.data
-  }
-})
+  }}
+)
 </script>
 
 <style lang="scss" scoped>

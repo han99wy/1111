@@ -35,7 +35,6 @@ const http = {
     )
   },
   post(url, data, config) {
-    console.log(2, data)
     return instance.post(url, data, config)
   },
   put(url, data, config) {

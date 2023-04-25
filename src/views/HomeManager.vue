@@ -23,7 +23,6 @@ const router=useRouter()
 const tableData = ref([])
 getmanager({mid:mid,mname:mname,mpwd:mpwd}).then((res)=>{
   if( res.data.length ) {
-    console.log(res.data);
     tableData.value = res.data
   }
 })

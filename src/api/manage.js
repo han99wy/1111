@@ -11,11 +11,11 @@ function createCoach(data){
 }
 
 function  deleteCoach(data){
-  return http.delete("coach/delete/{id}",data)
+  return http.delete("coach/delete",data)
 }
 
 function  searchCoach(data){
-  return http.get("coach/selectById/{id}",data)
+  return http.get("coach/selectById",data)
 }
 
 function reCoach (data){
@@ -31,6 +31,10 @@ function createEquirment(data){
   return http.post("equipment/insert",data)
 }
 
+function  deleteEquipment(data){
+  return http.delete("equipment/delete",data)
+}
+
 //课程管理
 function getLesson (data){
   return http.get("lesson/selectAll",data)
@@ -40,6 +44,9 @@ function createLesson (data){
   return http.post("lesson/insert",data)
 }
 
+function  deleteLesson(data){
+  return http.delete("lesson/delete",data)
+}
 //订单列表
 function getOrder (data){
   return http.get("orders/selectAll",data)
@@ -49,6 +56,10 @@ function createOrder(data){
   return http.post("orders/insert",data)
 }
 
+function  deleteOrders(data){
+  return http.delete("orders/delete",data)
+}
+//数据获取
 function getuser(data){
   return http.get("user/selectAll")
 }
@@ -74,5 +85,8 @@ export{
   createOrder,
   getmanager,
   getuser,
-  getvip
+  getvip,
+  deleteEquipment,
+  deleteLesson,
+  deleteOrders
 }

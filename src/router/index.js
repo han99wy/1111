@@ -20,7 +20,7 @@ const router = createRouter({
       component: BackIndex,
       redirect: "/home",
       meta: {
-        auth: true
+        auth: true,
       },
       children: [
         {

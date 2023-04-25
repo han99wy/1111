@@ -28,8 +28,8 @@
 
 
                     <p class="scrollbar-demo-item">
-                    <div class="cole">
-                        <ul class="police">
+                     <div class="cole">
+                          <ul class="police">
                             <li>
                                 <img src="../assets/images/kids2.jpg" alt="">
                                 <span class="black">
@@ -103,12 +103,10 @@
                                 </span>
                             </li>
                         </ul>
-                    </div>
+                     </div>
                     </p>
-                    <p class="scrollbar-demo-item1"></p>
-
+                  <p class="scrollbar-demo-item1"></p>
                 </el-scrollbar>
-
             </el-main>
             <el-footer style="width: 100%; height: 200px; background: orange;">
                 <div class="solo">
@@ -156,13 +154,6 @@ export default {
         }
     },
 }
-
-
-
-
-
-
-
 </script>
 
 <style>
@@ -172,7 +163,7 @@ export default {
 }
 a{
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 a:hover{
