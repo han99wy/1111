@@ -119,6 +119,7 @@ const onSubmit = (formEl) => {
           http.post('/coach/insert', form)
           ElMessage.success("成功")
           dialogVisible.value = false
+          getCoach(res.data)
         } else {
           ElMessage.error("失败")
           console.log("error");

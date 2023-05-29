@@ -74,7 +74,7 @@ const { username } = storeToRefs(userTokenStore)
 const breadcrumbs = computed(() => route.meta.breadcrumbs)
 const active = ref(route.path)
 const handleout = () => {
-    // userTokenStore.clearToken()
+    userTokenStore.clearToken()
     location.href = '/login'
 }
 </script>

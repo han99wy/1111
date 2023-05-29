@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserTokenStore } from '../stores/userToken'
+import  {loginUser} from "../api/user"
 import BackIndex from "@/views/BackIndex.vue"
 import Home from "@/views/Home.vue"
 import HomeCoach from "@/views/HomeCoach.vue"
@@ -77,7 +79,7 @@ const router = createRouter({
       name: 'login',
       component: Login,
       meta: {
-        auth: true
+        auth: false
       }
     },
     {
@@ -85,7 +87,7 @@ const router = createRouter({
       name: 'index',
       component: Index,
       meta: {
-        auth: true
+        auth: false
       }
     }, {
       path: '/homemanager',
@@ -112,22 +114,22 @@ const router = createRouter({
   ]
 })
 
-// router.beforeEach((to, from, next)=>{
-//   if( to.meta.auth ) {  // 需要权限校验的
-//     // 校验token是否合法，通过请求头携带
-//     info().then((res)=>{
-//       if(res.data.errcode === 0) {
-//         const userTokenStore = useUserTokenStore()
-//         userTokenStore.udpateUsername(res.data.username)
-//         next()
-//       }
-//       else {
-//         next('/login')
-//       }
-//     })
-//   }
-//   else {   // 不需要权限，直接进入
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next)=>{
+  if( to.meta.auth ) {  // 需要权限校验的
+    // 校验token是否合法，通过请求头携带
+    loginUser().then((res)=>{
+      if(res.data.errcode === 0) {
+        const userTokenStore = useUserTokenStore()
+        userTokenStore.udpateUname(res.data.uname)
+        next()
+      }
+      else {
+        next('/login')
+      }
+    })
+  }
+  else {   // 不需要权限，直接进入
+    next()
+  }
+})
 export default router

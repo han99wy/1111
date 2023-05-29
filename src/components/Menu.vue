@@ -6,7 +6,6 @@
             <el-menu-item index="2"><a href="/HomeVip">vip中心</a></el-menu-item>
             <el-menu-item index="3"><a href="/HomeUser">用户中心</a></el-menu-item>
             <el-menu-item index="4"><a href="/">后台首页</a></el-menu-item>
-
         </el-menu>
     </div>
 </template>
@@ -20,3 +19,4 @@ const handleSelect = () => { }
    
 <style lang="scss" scoped>
 </style>
+

@@ -65,7 +65,7 @@ const onSubmit = (formEl) => {
 
 <style scoped>
 .particle-wave{
-  background:url(https://p1.meituan.net/dpdeal/ff36f3e5e6340f249c63cd7e09358a531917046.jpg)no-repeat;
+  background: linear-gradient(315deg, #42d392 25%, #647eff);
   background-size: cover;
    position: absolute;
    top: 0;
